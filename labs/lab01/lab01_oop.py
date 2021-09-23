@@ -6,35 +6,60 @@ obj = C()
 
 
 class Rectangle:
-    def __new__(cls, *args, **kwargs):
-        print("Hello from __new__")
-        return super().__new__(cls)
+    # def __new__(cls, *args, **kwargs):
+    #     print("Hello from __new__")
+    #     return super().__new__(cls)
 
     #    default_color = "green"
 
     def __init__(self, width, height):
-        print("Hello from __init__")
-        self._width = width
-        self._height = height
+        # print("Hello from __init__")
+        self.__width = width
+        self.__height = height
 
-    def get_width(self):
-        return self._width
+    @property
+    def width(self):
+        return self.__width
 
-    def set_width(self, w):
-        self._width = w
+    @width.setter
+    def width(self, w):
+        if w > 0:
+            self.__width = w
+        else:
+            raise ValueError
 
-    def get_height(self):
-        return self._height
+    @property
+    def height(self):
+        return self.__height
 
-    def set_width(self, h):
-        self._height = h
+    @height.setter
+    def height(self, h):
+        if h > 0:
+            self.__height = h
+        else:
+            raise ValueError
+    #
+    # def get_width(self):
+    #     return self._width
+    #
+    # def set_width(self, w):
+    #     self._width = w
+    #
+    # def get_height(self):
+    #     return self._height
+    #
+    # def set_width(self, h):
+    #     self._height = h
 
     def area(self):
-        return self.width * self.height
+        return self.__width * self.__height
 
 
 rect = Rectangle(10, 20)
-
+#
+# print(rect.get_width())
+#
+# print(rect._width)
 # print(Rectangle.default_color)
 # r1 = Rectangle(1, 2)
 # r2 = Rectangle(10, 20)
