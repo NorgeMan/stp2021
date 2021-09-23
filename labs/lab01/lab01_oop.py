@@ -4,15 +4,31 @@ class C:
 
 obj = C()
 
+class Figure:
+    def __init__(self, color):
+        self.__color = color
 
-class Rectangle:
+    @property
+    def color(self):
+        return self.__color
+
+    @color.setter
+    def color(self, c):
+        self.__color = c
+
+    def info(self):
+        print("Figure")
+        print("Color: " + self.color)
+
+class Rectangle(Figure):
     # def __new__(cls, *args, **kwargs):
     #     print("Hello from __new__")
     #     return super().__new__(cls)
 
     #    default_color = "green"
 
-    def __init__(self, width, height):
+    def __init__(self, width, height,color):
+        super().__init__(color)
         # print("Hello from __init__")
         self.__width = width
         self.__height = height
@@ -50,6 +66,13 @@ class Rectangle:
     #
     # def set_width(self, h):
     #     self._height = h
+
+    def info(self):
+        print("Rectangle")
+        print("Color: " + self.color)
+        print("Width: " + str(self.width))
+        print("Height: " + str(self.height))
+        print("Area: " + str(self.are()))
 
     def area(self):
         return self.__width * self.__height
