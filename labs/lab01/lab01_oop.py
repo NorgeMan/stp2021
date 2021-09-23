@@ -14,8 +14,8 @@ class Rectangle:
 
     def __init__(self, width, height):
         print("Hello from __init__")
-        self.width = width
-        self.height = height
+        self._width = width
+        self._height = height
 
     def get_width(self):
         return self._width
