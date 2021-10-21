@@ -81,7 +81,7 @@ if __name__ == '__main__':
     parser.add_argument('-c', '--chorus', required=False)
     parser.add_argument('-m', '--mode', required=False, default='local')
     args = vars(parser.parse_args())
-    args = {'directory': r'C:\Users\ivanv\Downloads\stp2021-main', 'rows': '30', 'chorus': '5', 'mode': 'internet'}
+    args = {'directory': r'C:\Users\ivanv\PycharmProjects\stp2021\labs\lab01', 'rows': '30', 'chorus': '5', 'mode': 'internet'}
 
     if int(args['rows']) < int(args['chorus']) * 3:
         print('Your song is smaller than 3 choruses')
