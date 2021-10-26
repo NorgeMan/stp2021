@@ -1,3 +1,5 @@
+# Here are popular sorts, other info and some other sorting algorithms you can find in google
+
 # 1. Selection sort
 def selection_sort(arr):
     n = len(arr)
@@ -245,5 +247,3 @@ def heap_sort(arr):
 
 
 heap_sort([10, 5, 2, 3, 6, 7, 24, 18])
-
-
