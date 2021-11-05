@@ -38,16 +38,16 @@ export default class CreateRoomPage extends Component {
 
   handleRoomButtonPressed() {
     const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: "POST",
+        headers: {"Content-Type": "application/json" },
         body: JSON.stringify({
             votes_to_skip: this.state.votesToSkip,
             guest_can_pause: this.state.guestCanPause,
         }),
     };
-    fetch('/api/create-room', requestOptions)
-    .then((response) =>response.json())
-    .then((data) => console.log(data));
+    fetch("/api/create-room", requestOptions)
+    .then((response) => response.json())
+    .then((data) => this.props.history.push("/room/" + data.code));
   }
 
   render() {
@@ -71,7 +71,7 @@ export default class CreateRoomPage extends Component {
         </Grid>
         <Grid item xs={12} align="center">
             <FormControl>
-                <TextField required={true} type="number" onChange={this.handleVotesChange} defaultValue={this.defaultVotes} inputProps={{min: 1, style: {textAlign: "center"}}} />
+                <TextField required={true} type="number" onChange={this.handleVotesChange} defaultValue={this.defaultVotes} inputProps={{min: 1, style: {textAlign: "center"}, }} />
                 <FormHelperText>
                 <div align="center">Votes Required To Skip Song</div>
                 </FormHelperText>
