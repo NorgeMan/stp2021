@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { TextField, Button, Grid, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default class RoomJoinPage extends Component {
+class RoomJoinPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ export default class RoomJoinPage extends Component {
     );
   }
   handleTextFieldChange(e) {
-    this.state({
+    this.setState({
       roomCode: e.target.value,
     });
   }
@@ -50,15 +50,16 @@ export default class RoomJoinPage extends Component {
   roomButtonPressed() {
     const requestOptions = {
       method: "POST",
-      headers: {"Content-Type": "application/json"},
+      headers: {"Content-Type": "application/json",
+                "Accept": "application/json"},
       body: JSON.stringify({
         code: this.state.roomCode,
       }),
     };
-    fetch("/api/join-room/", requestOptions)
+    fetch("/api/join-room", requestOptions)
     .then((response) =>{
       if(response.ok){
-        this.history.push(`/room/${this.state.roomCode}`);
+        this.props.history.push(`/room/${this.state.roomCode}`);
       } else {
         this.setState({error: "Room not found."});
       }
@@ -68,3 +69,4 @@ export default class RoomJoinPage extends Component {
     });
   }
 }
+export default withRouter(RoomJoinPage)
