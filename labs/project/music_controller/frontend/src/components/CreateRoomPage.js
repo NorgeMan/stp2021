@@ -121,17 +121,3 @@ class CreateRoomPage extends Component {
   }
 }
 export default withRouter(CreateRoomPage)
-/*
-  useEffect(() => {
-    fetch("/api/get-room" + "?code=" + roomCode)
-      .then(res => res.json())
-      .then(data => {
-        setRoomData({
-          ...roomData, 
-          votesToSKip: data.votes_to_skip,
-          guestCanPause: data.guest_can_pause,
-          isHost: data.is_host,
-        })
-      })
-  },[roomCode,setRoomData]) //It renders when the object changes .If we use roomData and/or roomCode then it rerenders infinite times
-  */
