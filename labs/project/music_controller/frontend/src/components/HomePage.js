@@ -6,7 +6,7 @@ import {Grid, Button, ButtonGroup, Typography} from "@material-ui/core";
 import {
   BrowserRouter as Router,  Route, Switch,
   Link,
-  Redirect, withRouter
+  Redirect
 } from "react-router-dom";
 
 
@@ -16,6 +16,7 @@ export default class HomePage extends Component {
     this.state = {
       roomCode: null,
     };
+    this.clearRoomCode = this.clearRoomCode.bind(this);
   }
 
   async componentDidMount() {
@@ -46,15 +47,23 @@ export default class HomePage extends Component {
     );
   }
 
+  clearRoomCode() {
+    this.setState({
+      roomCode: null,
+    });
+  }
+
   render() {
     return (
       <Router>
       <Switch>
-          <Route exact path="/" render={() => {
-            return this.state.roomCode ? (<Redirect to={`/room/${this.state.roomCode}`}/>) : (this.renderHomePage())}}/>
+          <Route exact path="/"render={() => {
+            return this.state.roomCode ? (<Redirect to={`/room/${this.state.roomCode}`}/>) : (this.renderHomePage())}} />
           <Route path='/join' component={RoomJoinPage}></Route>
           <Route path='/create' component={CreateRoomPage}></Route>
-          <Route path='/room/:roomCode' component={Room}></Route>
+          <Route path='/room/:roomCode' render={(props) => {
+            return <Room {...props} leaveRoomCallback={this.clearRoomCode}/>
+          }}></Route>
       </Switch>
       </Router>
     );
