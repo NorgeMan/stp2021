@@ -147,7 +147,7 @@ class CreateRoomPage extends Component {
           </Collapse>
         </Grid>
         <Grid item xs={12} align="center">
-          <Typography component="h4" variant="h4">
+          <Typography component="h2" variant="h4">
             {title}
           </Typography>
         </Grid>

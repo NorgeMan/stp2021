@@ -18,7 +18,7 @@ export default class Room extends Component {
     this.renderSettingButton = this.renderSettingButton.bind(this);
     this.renderSettings = this.renderSettings.bind(this);
     this.getRoomDetails = this.getRoomDetails.bind(this);
-    this.getRoomDetails();
+    this.getRoomDetails()
   }
 
   getRoomDetails() {
@@ -95,22 +95,22 @@ export default class Room extends Component {
     }
     return <Grid container spacing={1}>
       <Grid item xs={12} align="center">
-        <Typography variant="h4" component="h4">
+        <Typography variant="h4" component="h2">
           Code: {this.roomCode}
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
+        <Typography variant="h6" component="h2">
           Votes: {this.state.votesToSkip}
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
+        <Typography variant="h6" component="h2">
           Guest Can Pause: {this.state.guestCanPause.toString()}
         </Typography>
       </Grid>
       <Grid item xs={12} align="center">
-        <Typography variant="h6" component="h6">
+        <Typography variant="h6" component="h2">
           Host: {this.state.isHost.toString()}
         </Typography>
       </Grid>
