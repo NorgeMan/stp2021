@@ -159,7 +159,7 @@ class CreateRoomPage extends Component {
             <RadioGroup
               row
               defaultValue={this.props.guestCanPause.toString()}
-              onChange={this.handleGuestCanPauseChange}
+              onChange={this.handleGuestCanPauseChange} 
             >
               <FormControlLabel
                 value="true"
