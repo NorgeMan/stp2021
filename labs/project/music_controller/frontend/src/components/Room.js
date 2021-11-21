@@ -10,6 +10,7 @@ export default class Room extends Component {
       guestCanPause: false,
       isHost: false,
       showSettings: false,
+      spotifyAuthenticated: false
     };
     this.roomCode = this.props.match.params.roomCode;
     this.getRoomDetails();
@@ -18,7 +19,8 @@ export default class Room extends Component {
     this.renderSettingButton = this.renderSettingButton.bind(this);
     this.renderSettings = this.renderSettings.bind(this);
     this.getRoomDetails = this.getRoomDetails.bind(this);
-    this.getRoomDetails()
+    this.authenticateSpotify = this.authenticateSpotify.bind(this);
+    this.getRoomDetails();
   }
 
   getRoomDetails() {
@@ -36,7 +38,23 @@ export default class Room extends Component {
           guestCanPause: data.guest_can_pause,
           isHost: data.is_host,
         });
+        if (this.state.isHost) {
+          this.authenticateSpotify();
+        }
       });
+  }
+
+  authenticateSpotify() {
+    fetch('/spotify/is-authenticated')
+    .then((response) => response.json()).then((data) => {
+      this.setState({spotifyAuthenticated: data.status });
+      if (!data.status) {
+        fetch('/spotify/get-auth-url')
+        .then((response) => response.json()).then((data) => {
+          window.location.replace(data.url);
+        });
+      }
+    });
   }
 
   leaveButtonPressed() {
@@ -61,21 +79,21 @@ export default class Room extends Component {
 
   renderSettings() {
     return (
-    <Grid container spacing={1}>
-      <Grid item xs={12} align="center">
-        <CreateRoomPage
-         update={true}
-         votesToSkip={this.state.votesToSkip}
-         guestCanPause={this.state.guestCanPause}
-         roomCode={this.roomCode}
-         updateCallback={this.getRoomDetails}/>
+      <Grid container spacing={1}>
+        <Grid item xs={12} align="center">
+          <CreateRoomPage
+            update={true}
+            votesToSkip={this.state.votesToSkip}
+            guestCanPause={this.state.guestCanPause}
+            roomCode={this.roomCode}
+            updateCallback={this.getRoomDetails} />
+        </Grid>
+        <Grid item xs={12} align="center">
+          <Button variant="contained" color="secondary" onClick={() => this.updateShowSettings(false)}>
+            Close
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item xs={12} align="center">
-      <Button variant="contained" color="secondary" onClick={() => this.updateShowSettings(false)}>
-          Close
-        </Button>
-      </Grid>
-    </Grid>
     );
   }
 
