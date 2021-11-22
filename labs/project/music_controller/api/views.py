@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 
 
-class RoomView(generics.ListAPIView):
+class RoomView(generics.ListCreateAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
