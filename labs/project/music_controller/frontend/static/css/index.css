@@ -24,15 +24,9 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
- /*   
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    
-    height: 50%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    */
+#gradient {
+    min-width: 100%;
+    min-height: 100%;
+    padding: 0px;
+    margin: 0px;  
+}
